@@ -10,17 +10,8 @@ int main() {
 
     RenderWindow app(VideoMode(1280, 720), "backtracking");
 
-    CircleShape circle;
-    circle.setRadius(100);
-    circle.setPosition(500, 300);
-    circle.setFillColor(Color::Magenta);
-    circle.setOutlineColor(Color::Green);
-
     sf::Font font;
     font.loadFromFile("font/Monocraft.ttf");
-
-    RectangleShape rect;
-    //rect.setSize()
 
     Maze maze(5);
 
@@ -46,13 +37,10 @@ int main() {
             MazeGeneration::generateMaze(maze, app);
         }
 
-        circle.move(0.1, 0);
-
         app.clear(Color::White);
 
         app.draw(gen);
         app.draw(es);
-
         maze.printMaze(maze, app);
 
         app.display();

@@ -1,4 +1,5 @@
 #include "Maze.h"
+#include "MySprite.h"
 
 void Maze::printMaze(Maze& maze, sf::RenderWindow& app) {
 
@@ -6,43 +7,20 @@ void Maze::printMaze(Maze& maze, sf::RenderWindow& app) {
     sf::Font font;
     font.loadFromFile("font/Monocraft.ttf");
 
-    sf::Texture cellTexture,
-                vertWallTexture,
-                horWallTexture,
-                frameTexture,
-                startTexture;
-
-    cellTexture.loadFromFile("images/cell.png");
-    vertWallTexture.loadFromFile("images/vertical_right_line.png");
-    horWallTexture.loadFromFile("images/horizontal_low_line.png");
-    frameTexture.loadFromFile("images/frame.png");
-    startTexture.loadFromFile("images/start.png");
-
-    sf::Sprite cellSprite,
-               vertWallSprite,
-               horWallSprite,
-               frameSprite,
-               startSprite;
-
-    cellSprite.setTexture(cellTexture);
-    vertWallSprite.setTexture(vertWallTexture);
-    horWallSprite.setTexture(horWallTexture);
-    frameSprite.setTexture(frameTexture);
-    startSprite.setTexture(startTexture);
+    MySprite vertWallSprite("images/vertical_right_line.png");
+    MySprite horWallSprite("images/horizontal_low_line.png");
+    MySprite frameSprite("images/frame.png");
+    MySprite startSprite("images/start.png");
 
     frameSprite.setPosition(55, 20);
 
     float scale = 10 / float(maze.getMazeSize());
 
-    cellSprite.scale(scale, scale);
-    vertWallSprite.scale(scale, scale);
-    horWallSprite.scale(scale, scale);
-    startSprite.scale(scale, scale);
+    vertWallSprite.setScale(scale);
+    horWallSprite.setScale(scale);
+    startSprite.setScale(scale);
 
-    std::vector<std::vector<bool>> horizontalWalls = maze.getVectorOfHorWalls(),
-                                  verticalWalls = maze.getVectorOfVerWalls();
-
-    app.draw(frameSprite);
+    app.draw(frameSprite.getSprite());
 
     for (int i = 0; i < maze.getMazeSize(); i++) {
         for (int j = 0; j < maze.getMazeSize(); j++) {
@@ -54,45 +32,19 @@ void Maze::printMaze(Maze& maze, sf::RenderWindow& app) {
 
             vertWallSprite.setPosition(60 + j * 60 * scale, 20 + i * 60 * scale);
             horWallSprite.setPosition(60 + j * 60 * scale, 20 + i * 60 * scale);
-            cellSprite.setPosition(60 + j * 60 * scale, 20 + i * 60 * scale);
-
-            //app.draw(cellSprite);
 
             if (horizontalWalls[i][j])
-                app.draw(horWallSprite);
+                app.draw(horWallSprite.getSprite());
             if (verticalWalls[i][j])
-                app.draw(vertWallSprite);
+                app.draw(vertWallSprite.getSprite());
 
             //app.draw(text);
-
-            //std::cout << vecOfSet[i][j] << " ";
         }
-        //std::cout << std::endl;
     }
 
     startSprite.setPosition(58 + start.second * 60 * scale, 20 + start.first * 60 * scale);
-    app.draw(startSprite);
+    app.draw(startSprite.getSprite());
 
-}
-
-std::vector<std::vector<int>> Maze::getVectorOfSet() {
-    return vecOfSet;
-}
-
-std::vector<int> Maze::getLineOfSet(int index) {
-    return this -> vecOfSet[index];
-}
-
-std::vector<std::vector<bool>> Maze::getVectorOfHorWalls() {
-    return horizontalWalls;
-}
-
-std::vector<bool> Maze::getLineOfHorWalls(int index) {
-    return this -> horizontalWalls[index];
-}
-
-std::vector<std::vector<bool>> Maze::getVectorOfVerWalls() {
-    return verticalWalls;
 }
 
 void Maze::setCellOfSet(int val, int i, int j) {
@@ -113,4 +65,43 @@ void Maze::deleteVerticalWall(int i, int j) {
 
 void Maze::setVerticalWall(int i, int j) {
     verticalWalls[i][j] = true;
+}
+
+int Maze::getMazeSize() {
+    return this -> mazeSize;
+}
+
+int Maze::getValueOfCell(int i, int j) {
+    return this -> vecOfSet[i][j];
+}
+
+bool Maze::isHorizontalWall(int i, int j) {
+    return this -> horizontalWalls[i][j];
+}
+
+void Maze::setMazeSize(int mazeSize) {
+    this -> mazeSize = mazeSize;
+}
+
+void Maze::clearMaze() {
+    for (int i = 0; i < mazeSize; i++)
+        for (int j = 0; j < mazeSize; j++) {
+            this -> vecOfSet[i][j] = 0;
+            this -> horizontalWalls[i][j] = false;
+            this -> verticalWalls[i][j] = false;
+        }
+}
+
+void Maze::initMaze() {
+
+    vecOfSet = std::vector<std::vector<int>> (mazeSize, std::vector<int> (mazeSize, EMPTY_CELL));
+
+    std::vector<std::vector<bool>> sample(mazeSize, std::vector<bool> (mazeSize, EMPTY_CELL));
+    this -> verticalWalls = sample;
+    this -> horizontalWalls = sample;
+
+    this -> start.first = 0; this -> start.second = 0;
+    this -> finish.first = mazeSize - 1; this -> finish.second = mazeSize - 1;
+
+    std::cout << "log: maze was cleared\n";
 }

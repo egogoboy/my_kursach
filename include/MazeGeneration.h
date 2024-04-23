@@ -9,9 +9,6 @@
 
 class MazeGeneration {
     public:
-        /*MazeGeneration();
-        virtual ~MazeGeneration();
-        */
         static void generateMaze(Maze& maze, sf::RenderWindow& app);
 
     protected:
@@ -31,4 +28,4 @@ class MazeGeneration {
         static const int FREQUENCY = 6;
 };
 
-#endif // MAZEGENERATION_H
+#endif
