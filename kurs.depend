@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1713892357 source:c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\main.cpp
+1713893064 source:c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\main.cpp
 	<SFML/Graphics.hpp>
 	<SFML/Window/Keyboard.hpp>
 	<vector>
@@ -415,27 +415,28 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1713860360 source:c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\src\maze.cpp
+1713897284 source:c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\src\maze.cpp
 	"Maze.h"
+	"MySprite.h"
 
-1713859527 c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\include\maze.h
+1713898407 c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\include\maze.h
 	<iostream>
 	<vector>
 	<SFML/Graphics.hpp>
 
-1713860533 source:c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\src\mazegeneration.cpp
+1713898143 source:c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\src\mazegeneration.cpp
 	"MazeGeneration.h"
 
-1713854572 c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\include\mazegeneration.h
+1713898143 c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\include\mazegeneration.h
 	<Maze.h>
 	<random>
 	<iostream>
 	<SFML/Graphics.hpp>
 	<SFML/Window/Keyboard.hpp>
 
-1713892218 source:c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\src\mysprite.cpp
+1713897697 source:c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\src\mysprite.cpp
 	"MySprite.h"
 
-1713885258 c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\include\mysprite.h
+1713898143 c:\users\egor2\documents\codeblocks-projects\ege-5\kurs\include\mysprite.h
 	<SFML/Graphics.hpp>
 

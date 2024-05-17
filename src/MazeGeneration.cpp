@@ -32,8 +32,6 @@ void MazeGeneration::createNewLineNext(Maze& maze, int numLine) {
 void MazeGeneration::createLastLine(Maze& maze, int& countOfSet) {
 
     int numLine = maze.getMazeSize() - 1;
-    //assignUniqueSet(maze, numLine, countOfSet);
-    //generateVerticalWalls(maze, numLine);
     checkEndLine(maze, numLine);
 
 }
@@ -99,17 +97,10 @@ void MazeGeneration::generateHorizontalWalls(Maze& maze, int numLine) {
 
 void MazeGeneration::checkHorizontalWalls(Maze& maze, int numLine) {
 
-    /*for (int i = 0; i < maze.getMazeSize(); i++) {
-        //std::cout << maze.getValueOfCell(numLine, i) << " ";
-    }
-    //std::cout << std::endl;
-    */
     for (int i = 0; i < maze.getMazeSize(); i++) {
 
         if (calculateHorizontalWalls(maze, numLine, maze.getValueOfCell(numLine, i)) == 0) {
             maze.deleteHorizontalWall(numLine, i);
-
-            //std::cout << "log: delete horizontal wall at [" << numLine << "][" << i << "]\n";
         }
     }
 }
@@ -150,16 +141,3 @@ void MazeGeneration::mergeSet(Maze& maze, int numLine, int index, int elementOfS
     }
 
 }
-
-
-
-/*
-MazeGeneration::MazeGeneration() {
-    //ctor
-}
-
-MazeGeneration::~MazeGeneration()
-{
-    //dtor
-}
-*/
